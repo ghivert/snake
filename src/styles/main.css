@@ -1,0 +1,98 @@
+/*
+  elm-hot creates an additional div wrapper around the app to make HMR possible.
+  This could break styling in development mode if you are using Elm UI.
+
+  More context in the issue:
+    https://github.com/halfzebra/create-elm-app/issues/320
+*/
+[data-elm-hot='true'] {
+  height: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  margin: 0;
+  color: #293c4b;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  background: #fff;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+img {
+  margin: 20px 0;
+  max-width: 200px;
+}
+
+.grid {
+  display: grid;
+  width: 300px;
+  height: 300px;
+  gap: 24px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid #888;
+  padding: 24px;
+  margin: 24px auto;
+  background: white;
+}
+
+.cell {
+  border: 2px solid #888;
+  background: #f5f5f5;
+}
+
+.active {
+  background: #bbb;
+}
+
+.actual-time {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  background: #1293d8;
+  color: white;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.separator {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
