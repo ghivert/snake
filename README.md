@@ -1,4 +1,4 @@
-# Minesweeper
+# Snake
 
 Le but du projet est d’implémenter le jeu du Snake. Il n’y a rien à installer à part le projet en lui-même, ainsi que Node.js et Yarn (ou NPM).
 
