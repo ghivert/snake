@@ -53,13 +53,15 @@ img {
   display: grid;
   width: 300px;
   height: 300px;
-  gap: 24px;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;/*24px*/
+  grid-template-rows: repeat(10, 20px);/*1FR*/
+  grid-template-columns: repeat(10, 20px);
   border: 2px solid #888;
   padding: 24px;
   margin: 24px auto;
   background: white;
+  position: relative;
+  /* position: absolute; */
 }
 
 .cell {
@@ -96,3 +98,5 @@ img {
   flex-direction: column;
   gap: 9px;
 }
+
+
