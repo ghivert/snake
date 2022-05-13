@@ -49,19 +49,30 @@ img {
   max-width: 200px;
 }
 
-.grid {
+.grid-wide {
   display: grid;
   width: 300px;
-  height: 300px;
-  gap: 10px;/*24px*/
-  grid-template-rows: repeat(10, 20px);/*1FR*/
-  grid-template-columns: repeat(10, 20px);
+  height: 1500px;
+  gap: 24px;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border: 2px solid #888;
   padding: 24px;
   margin: 24px auto;
   background: white;
-  position: relative;
-  /* position: absolute; */
+}
+
+.grid {
+  display: grid;
+  width: 300px;
+  height: 300px;
+  gap: 24px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid #888;
+  padding: 24px;
+  margin: 24px auto;
+  background: white;
 }
 
 .cell {
@@ -71,6 +82,38 @@ img {
 
 .active {
   background: #bbb;
+}
+
+.red-active {
+  background: #e30000;
+}
+
+.anim-moveLeft{
+  animation: 200ms ease-in 1s infinite moveLeft;
+}
+
+.anim-moveRight{
+  animation: 200ms ease-in 1s infinite moveRight;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translate(-50px);
+  }
+
+  100% {
+    transform: translate(0px);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translate(50px);
+  }
+
+  100% {
+    transform: translate(0px);
+  }
 }
 
 .actual-time {
@@ -98,5 +141,3 @@ img {
   flex-direction: column;
   gap: 9px;
 }
-
-

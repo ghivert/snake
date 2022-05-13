@@ -5160,9 +5160,10 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$element = _Browser_element;
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $author$project$Main$Model = F4(
-	function (gameStarted, lastUpdate, time, coloredSquare) {
-		return {coloredSquare: coloredSquare, gameStarted: gameStarted, lastUpdate: lastUpdate, time: time};
+var $author$project$Main$ArrowLeft = {$: 'ArrowLeft'};
+var $author$project$Main$Model = F5(
+	function (gameStarted, lastUpdate, time, coloredSquare, animatedSquare) {
+		return {animatedSquare: animatedSquare, coloredSquare: coloredSquare, gameStarted: gameStarted, lastUpdate: lastUpdate, time: time};
 	});
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
@@ -5173,7 +5174,7 @@ var $author$project$Main$init = function (_v0) {
 	var now = _v0.now;
 	return function (time) {
 		return $author$project$Update$none(
-			A4($author$project$Main$Model, false, time, time, 0));
+			A5($author$project$Main$Model, false, time, time, 0, $author$project$Main$ArrowLeft));
 	}(now);
 };
 var $elm$json$Json$Decode$int = _Json_decodeInt;
@@ -5185,7 +5186,6 @@ var $author$project$Main$KeyDown = function (a) {
 	return {$: 'KeyDown', a: a};
 };
 var $author$project$Main$ArrowDown = {$: 'ArrowDown'};
-var $author$project$Main$ArrowLeft = {$: 'ArrowLeft'};
 var $author$project$Main$ArrowRight = {$: 'ArrowRight'};
 var $author$project$Main$ArrowUp = {$: 'ArrowUp'};
 var $author$project$Main$Space = {$: 'Space'};
@@ -5825,10 +5825,16 @@ var $author$project$Main$toggleGameLoop = function (model) {
 var $author$project$Main$keyDown = F2(
 	function (key, model) {
 		var _v1 = A2($elm$core$Debug$log, 'key', key);
-		if (_v1.$ === 'Space') {
-			return A2($author$project$Main$update, $author$project$Main$ToggleGameLoop, model);
-		} else {
-			return $author$project$Update$none(model);
+		switch (_v1.$) {
+			case 'Space':
+				return A2($author$project$Main$update, $author$project$Main$ToggleGameLoop, model);
+			case 'ArrowLeft':
+				return A2(
+					$author$project$Main$update,
+					$author$project$Main$KeyDown($author$project$Main$ArrowLeft),
+					model);
+			default:
+				return $author$project$Update$none(model);
 		}
 	});
 var $author$project$Main$update = F2(
@@ -5915,7 +5921,7 @@ var $author$project$Main$explanations = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Welcome to the snake project!')
+						$elm$html$Html$text('SNAKE !!!!!')
 					])),
 				$author$project$Main$actualTime(model),
 				A2(
@@ -5940,7 +5946,18 @@ var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $author$project$Main$cell = F2(
 	function (index, active) {
-		var _class = _Utils_eq(active, index) ? 'cell active' : 'cell';
+		var _class = _Utils_eq(active, index) ? 'cell red-active' : 'cell';
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class(_class)
+				]),
+			_List_Nil);
+	});
+var $author$project$Main$movingCell = F2(
+	function (index, active) {
+		var _class = _Utils_eq(active, index) ? 'cell red-active moveLeft' : 'cell';
 		return A2(
 			$elm$html$Html$div,
 			_List_fromArray(
@@ -5953,16 +5970,48 @@ var $author$project$Main$movingSquare = function (_v0) {
 	var coloredSquare = _v0.coloredSquare;
 	return A2(
 		$elm$html$Html$div,
+		_List_Nil,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('grid')
-			]),
-		_List_fromArray(
-			[
-				A2($author$project$Main$cell, 0, coloredSquare),
-				A2($author$project$Main$cell, 1, coloredSquare),
-				A2($author$project$Main$cell, 3, coloredSquare),
-				A2($author$project$Main$cell, 2, coloredSquare)
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('grid')
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Main$movingCell, 0, coloredSquare)
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('grid-wide')
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Main$cell, 0, coloredSquare),
+						A2($author$project$Main$cell, 1, 1),
+						A2($author$project$Main$cell, 3, 3),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 1, coloredSquare),
+						A2($author$project$Main$cell, 3, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 1, coloredSquare),
+						A2($author$project$Main$cell, 3, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 1, coloredSquare),
+						A2($author$project$Main$cell, 3, coloredSquare),
+						A2($author$project$Main$cell, 2, coloredSquare),
+						A2($author$project$Main$cell, 1, coloredSquare),
+						A2($author$project$Main$cell, 3, coloredSquare)
+					]))
 			]));
 };
 var $elm$html$Html$Attributes$src = function (url) {
